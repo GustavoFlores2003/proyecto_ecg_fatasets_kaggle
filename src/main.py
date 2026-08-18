@@ -61,7 +61,7 @@ from src.data.loaders import cargar_dataset, cargar_datos_ecg, cargar_datos_ecg_
 from src.evaluation.reporting import generar_conclusiones_y_trabajo_futuro, generar_discusion_resultados, generar_reporte_comparativo_modelos
 from src.visualization.plots import graficar_curva_aprendizaje_modelo, graficar_distribucion_clases, graficar_importancia_caracteristicas, mostrar_resultados
 from src.models.random_forest import entrenar_modelo_random_forest
-from src.utils.helpers import _nombre_dataset_canonico, normalizar_nombre_dataset
+from src.utils.helpers import _nombre_dataset_canonico, normalizar_nombre_dataset, obtener_ruta_figura, obtener_ruta_reporte
 from src.evaluation.metrics import comparar_resultados, evaluar_modelos_en_dataset
 from src.models.resnet import crear_dataloaders_resnet, crear_modelo_resnet18, entrenar_modelo_resnet, evaluar_modelo_resnet
 from src.data.preprocessing import dividir_datos, validar_datos
@@ -317,7 +317,7 @@ def main():
             X_prueba=X_prueba,
             y_prueba=y_prueba,
             nombres_clases=None,
-            ruta_guardado_figura=f"{prefijo_figuras}_matriz_confusion_random_forest.png"
+            ruta_guardado_figura=str(obtener_ruta_figura(f"{prefijo_figuras}_matriz_confusion_random_forest.png"))
         )
         resultados_rf["tamano_total"] = X.shape[0]
         resultados_rf["tamano_entrenamiento"] = X_entrenamiento.shape[0]
@@ -351,7 +351,7 @@ def main():
                 modelo=modelo_resnet,
                 loader_datos=loader_val,
                 nombres_clases=nombres_clases_resnet,
-                ruta_guardado_figura=f"{prefijo_figuras}_matriz_confusion_resnet18.png",
+                ruta_guardado_figura=str(obtener_ruta_figura(f"{prefijo_figuras}_matriz_confusion_resnet18.png")),
                 mostrar_figura=True
             )
             resultados_resnet["historial_resnet"] = historial_resnet
@@ -377,7 +377,7 @@ def main():
                 tamano_imagen=tamano_imagen,
                 convertir_a_grises=convertir_a_grises,
                 dispositivo=dispositivo_clip,
-                ruta_guardado_figura=f"{prefijo_figuras}_matriz_confusion_clip_zero_shot.png"
+                ruta_guardado_figura=str(obtener_ruta_figura(f"{prefijo_figuras}_matriz_confusion_clip_zero_shot.png"))
             )
             resultados_clip_zero["tamano_total"] = X.shape[0]
             resultados_clip_zero["tamano_entrenamiento"] = X_entrenamiento.shape[0]
@@ -396,7 +396,7 @@ def main():
                 tamano_imagen=tamano_imagen,
                 convertir_a_grises=convertir_a_grises,
                 dispositivo=dispositivo_clip,
-                ruta_guardado_figura=f"{prefijo_figuras}_matriz_confusion_clip_embeddings.png"
+                ruta_guardado_figura=str(obtener_ruta_figura(f"{prefijo_figuras}_matriz_confusion_clip_embeddings.png"))
             )
             resultados_clip_emb["tamano_total"] = X.shape[0]
             resultados_clip_emb["tamano_entrenamiento"] = X_entrenamiento.shape[0]
@@ -737,7 +737,7 @@ def validar_integracion_final(
         
         fig.tight_layout()
         
-        nombre_png = f"heatmap_validacion_{ds.replace(' ', '_').replace('-', '_').lower()}.png"
+        nombre_png = str(obtener_ruta_figura(f"heatmap_validacion_{ds.replace(' ', '_').replace('-', '_').lower()}.png"))
         fig.savefig(nombre_png, dpi=150, bbox_inches="tight")
         print(f"  Heatmap guardado: {nombre_png}")
         

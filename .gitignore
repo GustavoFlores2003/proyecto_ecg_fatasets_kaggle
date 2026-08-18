@@ -1,18 +1,18 @@
 # Entornos virtuales
 .venv/
-env/
 venv/
+env/
+
+# Cache de Python
 __pycache__/
 *.pyc
 
-# Datos
+# Datos (pesados / clínicos - no subir a git)
 data/raw/
 data/processed/
+*.zip
 
-# Outputs
-outputs/figures/
-outputs/reports/
-
-# Otros
-.vscode/
+# Sistema operativo / editor
 .DS_Store
+.vscode/
+.idea/

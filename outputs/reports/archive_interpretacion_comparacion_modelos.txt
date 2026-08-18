@@ -1,0 +1,9 @@
+CONCLUSIONES
+- Se completó un flujo integral desde la carga de datos hasta la evaluación, empleando 50 muestras.
+- El RandomForest base logra 30.00% de exactitud y ofrece métricas detalladas por clase.
+- Frente a Gao et al. (2022) - Transformer para ECG multiclase, el modelo actual muestra una diferencia de -68.00%.
+
+TRABAJO FUTURO
+- Incrementar el dataset para balancear clases y evaluar la robustez del modelo.
+- Explorar arquitecturas profundas (CNN/Transformers) y búsqueda de hiperparámetros.
+- Integrar validación cruzada y explicación de características relevantes.

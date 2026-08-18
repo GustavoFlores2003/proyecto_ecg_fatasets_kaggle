@@ -64,8 +64,8 @@ def evaluar_modelos_en_dataset(
     """
     Ejecuta los modelos existentes sobre un dataset cargado y devuelve métricas resumidas.
     """
-    from src.utils.helpers import normalizar_nombre_dataset
     from src.evaluation.reporting import generar_conclusiones_y_trabajo_futuro, generar_discusion_resultados, generar_reporte_comparativo_modelos
+    from src.utils.helpers import normalizar_nombre_dataset, obtener_ruta_figura, obtener_ruta_reporte
     from src.visualization.plots import graficar_curva_aprendizaje_modelo, graficar_distribucion_clases, graficar_importancia_caracteristicas, graficar_importancia_pixeles, mostrar_resultados
     from src.models.clip_model import cargar_modelo_clip_preentrenado, entrenar_y_evaluar_clip_embeddings, evaluar_clip_zero_shot
     from src.models.random_forest import entrenar_modelo_random_forest
@@ -94,7 +94,7 @@ def evaluar_modelos_en_dataset(
 
     graficar_distribucion_clases(
         conteo_por_clase,
-        ruta_guardado=f"{nombre_dataset}_distribucion_clases.png"
+        ruta_guardado=str(obtener_ruta_figura(f"{nombre_dataset}_distribucion_clases.png"))
     )
 
     n_arboles = 100
@@ -127,7 +127,7 @@ def evaluar_modelos_en_dataset(
                         X_prueba=X_test_modelo,
                         y_prueba=y_prueba,
                         nombres_clases=None,
-                        ruta_guardado_figura=f"{nombre_dataset}_matriz_confusion_random_forest.png"
+                        ruta_guardado_figura=str(obtener_ruta_figura(f"{nombre_dataset}_matriz_confusion_random_forest.png"))
                     )
                     resultados_por_modelo["random_forest"] = resultados_rf
                     
@@ -135,7 +135,7 @@ def evaluar_modelos_en_dataset(
                     graficar_importancia_pixeles(
                         modelo_rf=modelo_rf,
                         tamano_imagen=tamano_imagen_efectivo,
-                        ruta_guardado_figura=f"{nombre_dataset}_heatmap_pixeles.png"
+                        ruta_guardado_figura=str(obtener_ruta_figura(f"{nombre_dataset}_heatmap_pixeles.png"))
                     )
 
                 elif nombre_modelo == "resnet18":
@@ -189,7 +189,7 @@ def evaluar_modelos_en_dataset(
                         modelo=modelo_resnet,
                         loader_datos=loader_val,
                         nombres_clases=nombres_clases_resnet,
-                        ruta_guardado_figura=f"{nombre_dataset}_matriz_confusion_resnet18.png",
+                        ruta_guardado_figura=str(obtener_ruta_figura(f"{nombre_dataset}_matriz_confusion_resnet18.png")),
                         mostrar_figura=True
                     )
                     resultados_resnet["historial_resnet"] = historial_resnet
@@ -211,7 +211,7 @@ def evaluar_modelos_en_dataset(
                         tamano_imagen=tamano_imagen_efectivo,
                         convertir_a_grises=convertir_a_grises,
                         dispositivo=dispositivo_clip,
-                        ruta_guardado_figura=f"{nombre_dataset}_matriz_confusion_clip_embeddings.png"
+                        ruta_guardado_figura=str(obtener_ruta_figura(f"{nombre_dataset}_matriz_confusion_clip_embeddings.png"))
                     )
                     resultados_por_modelo["clip_embeddings"] = resultados_clip_emb
 
@@ -231,7 +231,7 @@ def evaluar_modelos_en_dataset(
                         tamano_imagen=tamano_imagen_efectivo,
                         convertir_a_grises=convertir_a_grises,
                         dispositivo=dispositivo_clip,
-                        ruta_guardado_figura=f"{nombre_dataset}_matriz_confusion_clip_zero_shot.png"
+                        ruta_guardado_figura=str(obtener_ruta_figura(f"{nombre_dataset}_matriz_confusion_clip_zero_shot.png"))
                     )
                     resultados_por_modelo["clip_zero_shot"] = resultados_clip_zero
 
@@ -345,12 +345,12 @@ def evaluar_modelos_en_dataset(
             ),
             X=X_entrenamiento,
             y=y_entrenamiento,
-            ruta_guardado=f"{nombre_dataset}_curva_aprendizaje.png"
+            ruta_guardado=str(obtener_ruta_figura(f"{nombre_dataset}_curva_aprendizaje.png"))
         )
         graficar_importancia_caracteristicas(
             modelo=modelo,
             nombres_columnas=nombres_columnas,
-            ruta_guardado=f"{nombre_dataset}_importancia_caracteristicas.png",
+            ruta_guardado=str(obtener_ruta_figura(f"{nombre_dataset}_importancia_caracteristicas.png")),
             top_n=20
         )
 
@@ -367,8 +367,8 @@ def evaluar_modelos_en_dataset(
     reporte_comparativo = generar_reporte_comparativo_modelos(
         resultados_por_modelo=resultados_por_modelo,
         conteo_clases=conteo_por_clase,
-        ruta_csv_salida=f"{nombre_dataset}_comparacion_modelos.csv",
-        ruta_txt_salida=f"{nombre_dataset}_interpretacion_comparacion_modelos.txt"
+        ruta_csv_salida=str(obtener_ruta_reporte(f"{nombre_dataset}_comparacion_modelos.csv")),
+        ruta_txt_salida=str(obtener_ruta_reporte(f"{nombre_dataset}_interpretacion_comparacion_modelos.txt"))
     )
     print("\n=== INTERPRETACIÓN COMPARATIVA DEL DATASET ===")
     print(reporte_comparativo["interpretacion"])

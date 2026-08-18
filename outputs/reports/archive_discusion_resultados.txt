@@ -1,0 +1,18 @@
+RESULTADOS Y DISCUSION
+- El modelo RandomForest obtuvo 30.00% de exactitud sobre 10 muestras de prueba.
+- La clase con mejor F1 fue 'B' (F1=0.46), mientras que 'A' mostró la menor F1 (F1=0.00).
+- La mayor confusión ocurre en la clase 'A', con 5 ejemplos mal clasificados.
+
+Comparación con literatura (post 2017):
+  * Attia et al. (2019) - Red profunda para fibrilación auricular: 94.00% de exactitud (diferencia -64.00% frente al modelo actual).
+  * Yildirim (2020) - Modelo híbrido 1D-CNN/GRU: 96.00% de exactitud (diferencia -66.00% frente al modelo actual).
+  * Oh et al. (2021) - Ensemble de CNNs ligeras: 93.00% de exactitud (diferencia -63.00% frente al modelo actual).
+  * Gao et al. (2022) - Transformer para ECG multiclase: 98.00% de exactitud (diferencia -68.00% frente al modelo actual).
+
+Ventajas:
+  - Pipeline reproducible que abarca carga, preprocesamiento y evaluación.
+  - Generación automática de matriz de confusión utilizable en el informe.
+
+Limitaciones:
+  - El modelo base no explora optimización de hiperparámetros ni arquitecturas profundas.
+  - El tamaño de la muestra de prueba es reducido; se recomienda recopilar más datos.

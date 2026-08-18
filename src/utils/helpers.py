@@ -61,6 +61,23 @@ def normalizar_nombre_dataset(nombre: str) -> str:
     nombre_limpio = nombre.strip().replace(" ", "_")
     return nombre_limpio.lower() or "dataset"
 
+def _obtener_directorio_raiz() -> Path:
+    """Devuelve la ruta absoluta a la raíz del proyecto."""
+    # Como este archivo está en src/utils/helpers.py, la raíz es 2 niveles arriba.
+    return Path(__file__).resolve().parents[2]
+
+def obtener_ruta_reporte(nombre_archivo: str) -> Path:
+    """Obtiene ruta para un reporte (CSV o TXT) y asegura que el directorio exista."""
+    dir_reports = _obtener_directorio_raiz() / "outputs" / "reports"
+    dir_reports.mkdir(parents=True, exist_ok=True)
+    return dir_reports / nombre_archivo
+
+def obtener_ruta_figura(nombre_archivo: str) -> Path:
+    """Obtiene ruta para una figura (PNG) y asegura que el directorio exista."""
+    dir_figures = _obtener_directorio_raiz() / "outputs" / "figures"
+    dir_figures.mkdir(parents=True, exist_ok=True)
+    return dir_figures / nombre_archivo
+
 def es_nombre_tecnico_o_intermedio(nombre: str) -> bool:
     """
     Filtra artefactos técnicos/intermedios que no deben contarse como dataset final.
