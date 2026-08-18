@@ -1,0 +1,9 @@
+INTERPRETACION COMPARATIVA
+- Según F1 macro, el mejor modelo es 'resnet18' (F1 macro=0.8704, accuracy=0.9038).
+- Para comparación justa en datasets médicos, priorizar F1 macro y balanced accuracy, no solo accuracy.
+- La matriz de confusión debe revisarse para identificar qué clases clínicas son más confundidas.
+- Alertas de evaluación detectadas:
+  * Desbalance de clases detectado (ratio mayor/menor = 2.29). Priorizar F1 macro y matriz de confusión sobre accuracy global.
+  * clip_embeddings: accuracy notablemente mayor que F1 macro (0.673 vs 0.492); posible sesgo hacia clases mayoritarias.
+  * clip_embeddings: gap entre accuracy y balanced accuracy (0.673 vs 0.552); revisar desempeño en clases minoritarias.
+  * clip_zero_shot: CLIP zero-shot depende de la redacción de prompts; variaciones de texto pueden cambiar el resultado sin cambiar las imágenes.
