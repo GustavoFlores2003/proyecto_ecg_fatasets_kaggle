@@ -101,7 +101,7 @@ Los datasets no se incluyen en este repositorio por tamaño y por tratarse de da
 - **PTB-XL / registros WFDB**: PhysioNet, licencia ODC-BY (requiere atribución).
 - **ECG Dataset, NHFB, Archive, mit-bih**: Kaggle/Mendeley, generalmente CC0 / CC BY 4.0.
 
-👉 Descárgalos desde: **[agregar links de Kaggle/PhysioNet aquí]**
+👉 Descárgalos desde: **[https://data.mendeley.com/datasets/xw9sd3btcs/2, https://zenodo.org/records/13825810, https://www.kaggle.com/datasets/evilspirit05/ecg-analysis, https://www.kaggle.com/datasets/shayanfazeli/heartbeat/data]**
 
 ## ⚠️ Nota
 
