@@ -107,6 +107,4 @@ Los datasets no se incluyen en este repositorio por tamaño y por tratarse de da
 
 Este repositorio tiene **fines experimentales y educativos**: es la fase de benchmarking de modelos previa a mi Proyecto de Título. **No debe usarse como herramienta de diagnóstico médico real** sin validación clínica y regulatoria correspondiente.
 
-## 📄 Licencia
 
-*(Agregar licencia, por ejemplo MIT)*
